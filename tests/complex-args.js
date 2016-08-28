@@ -31,7 +31,8 @@ describe("complex args", () => {
 
 	it("should hit cache for identical arguments", () => {
 		memoizedFn(arg1, arg2, arg3, arg4, arg5);
-		memoizedFn(arg1, arg2, arg3, arg4, arg5);
+		memoizedFn(arg1, { c: { d: 3 }, num: 7 }, arg3, arg4, arg5);
+		memoizedFn(arg1, arg2, arg3, arg4, new BigNumber("2", 10));
 		expect(memoizedFn.wasMemoized).toEqual(true);
 		expect(memoizedFn.lru.length).toEqual(1);
 	});
